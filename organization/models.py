@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse_lazy
+
 from organization.choices import TradePointType
 
 
@@ -80,3 +82,6 @@ class Order(models.Model):
 
     def __str__(self):
         return self.product_name
+
+    def get_detail_url(self):
+        return reverse_lazy('organization:order-detail', kwargs={'pk': self.pk})
