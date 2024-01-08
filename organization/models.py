@@ -12,7 +12,9 @@ class Organization(models.Model):
     name = models.CharField('Название', max_length=5000)
     address = models.CharField('Адрес', max_length=5000, blank=True, null=True)
     inn = models.CharField('ИНН', max_length=100, blank=True, null=True)
-    # leader =
+    leader = models.ForeignKey(
+        'stuff.Leader', verbose_name='Руководитель', related_name='organizations', on_delete=models.CASCADE
+    )
 
     class Meta:
         verbose_name = 'Торговая организация'
@@ -36,7 +38,9 @@ class TradePoint(models.Model):
         Organization, verbose_name='Торговая организация', related_name='trade_points', on_delete=models.CASCADE
     )
     address = models.CharField('Адрес', max_length=5000, blank=True, null=True)
-    # leader =
+    leader = models.ForeignKey(
+        'stuff.Leader', verbose_name='Руководитель', related_name='trade_points', on_delete=models.SET_NULL, null=True, blank=True
+    )
 
     class Meta:
         verbose_name = 'Торговая точка'
@@ -75,6 +79,7 @@ class Order(models.Model):
     product_name = models.CharField('Название товара', max_length=5000)
     quantity = models.PositiveIntegerField('Количество товара', default=1, blank=True)
     price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
+
     class Meta:
         verbose_name = 'Заказ поставщикам'
         verbose_name_plural = 'Заказы поставщикам'
