@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
 
-  </body>
-</html>
+{% block content %}
+  <div class="container mt-4">
+    <h2>Список поставщиков</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Название</th>
+          <th scope="col">Страна</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for supplier in object_list %}
+          <tr style="cursor: pointer;" onclick="window.location='{% url 'organization:suppliers-detail' supplier.pk %}'">
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.country }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

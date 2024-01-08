@@ -13,7 +13,7 @@ class Organization(models.Model):
     address = models.CharField('Адрес', max_length=5000, blank=True, null=True)
     inn = models.CharField('ИНН', max_length=100, blank=True, null=True)
     leader = models.ForeignKey(
-        'stuff.Leader', verbose_name='Руководитель', related_name='organizations', on_delete=models.CASCADE
+        'stuff.Leader', verbose_name='Руководитель', related_name='organizations', blank=True, null=True, on_delete=models.SET_NULL
     )
 
     class Meta:
@@ -22,7 +22,7 @@ class Organization(models.Model):
         ordering = ('-name',)
 
     def __str__(self):
-        return {self.name}
+        return self.name
 
 
 class TradePoint(models.Model):

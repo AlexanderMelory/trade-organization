@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
 
-  </body>
-</html>
+{% block content %}
+  <div class="container mt-4">
+    <h2>Детали заказа</h2>
+    <dl class="row">
+      <dt class="col-sm-3">Дата заказа:</dt>
+      <dd class="col-sm-9">{{ order.date }}</dd>
+
+      <dt class="col-sm-3">Торговая точка:</dt>
+      <dd class="col-sm-9">{{ order.trade_point }}</dd>
+
+      <dt class="col-sm-3">Поставщик:</dt>
+      <dd class="col-sm-9">{{ order.supplier }}</dd>
+
+      <dt class="col-sm-3">Название товара:</dt>
+      <dd class="col-sm-9">{{ order.product_name }}</dd>
+
+      <dt class="col-sm-3">Количество товара:</dt>
+      <dd class="col-sm-9">{{ order.quantity }}</dd>
+
+      <dt class="col-sm-3">Цена:</dt>
+      <dd class="col-sm-9">{{ order.price }}</dd>
+    </dl>
+    <a href="{% url 'organization:order-list' %}" class="btn btn-outline-success float-start">Назад</a>
+    <a href="{% url 'organization:order-update' pk=order.pk %}" class="btn btn-primary float-end">Редактировать</a>
+  </div>
+{% endblock %}

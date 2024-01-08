@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
 
-  </body>
-</html>
+{% block content %}
+  <div class="container mt-4">
+    <h2>Список торговых организаций</h2>
+    <ul class="list-group">
+      {% for organization in object_list %}
+        <a href="{% url 'organization:organizations-detail' organization.pk %}" class="list-group-item list-group-item-action">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-9">
+              <strong>{{ organization.name }}</strong>
+              <br>
+              {% if organization.address %}
+                {{ organization.address }}
+                <br>
+              {% endif %}
+              {% if organization.inn %}
+                ИНН: {{ organization.inn }}
+              {% endif %}
+            </div>
+            <div class="col-md-3">
+              {% if organization.leader %}
+                <strong>Руководитель:</strong> {{ organization.leader }}
+              {% endif %}
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

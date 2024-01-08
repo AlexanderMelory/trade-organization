@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
 
-  </body>
-</html>
+{% block content %}
+  <div class="container mt-4">
+    <h2>Список заказов</h2>
+    <a href="{% url 'organization:order-create' %}" class="btn btn-primary mb-3">Создать новый заказ</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Дата</th>
+          <th scope="col">Торговая точка</th>
+          <th scope="col">Поставщик</th>
+          <th scope="col">Название товара</th>
+          <th scope="col">Количество</th>
+          <th scope="col">Цена</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in object_list %}
+          <tr style="cursor: pointer;" onclick="window.location='{% url 'organization:order-detail' pk=order.pk %}'">
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ order.date }}</td>
+            <td>{{ order.trade_point }}</td>
+            <td>{{ order.supplier }}</td>
+            <td>{{ order.product_name }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.price }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

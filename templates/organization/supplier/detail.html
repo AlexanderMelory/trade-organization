@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
 
-  </body>
-</html>
+{% block content %}
+  <div class="container mt-4">
+    <h2>Детали поставщика</h2>
+    <dl class="row">
+      <dt class="col-sm-3">Название:</dt>
+      <dd class="col-sm-9">{{ supplier.name }}</dd>
+
+      <dt class="col-sm-3">Страна:</dt>
+      <dd class="col-sm-9">{{ supplier.country }}</dd>
+    </dl>
+
+    <a href="{% url 'organization:suppliers-list' %}" class="btn btn-outline-success float-start">Назад</a>
+  </div>
+{% endblock %}

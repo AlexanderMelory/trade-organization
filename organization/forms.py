@@ -10,6 +10,13 @@ class OrderBaseForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = '__all__'
+        widgets = {
+            'trade_point': forms.Select(attrs={'class': 'form-control'}),
+            'supplier': forms.Select(attrs={'class': 'form-control'}),
+            'product_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
 
 
 class OrderCreateForm(OrderBaseForm):

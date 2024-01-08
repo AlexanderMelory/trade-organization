@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
 
-  </body>
-</html>
+{% block content %}
+  <div class="container mt-4">
+    <h2>Детали торговой организации</h2>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong>Название:</strong> {{ organization.name }}
+      </li>
+
+      {% if organization.address %}
+        <li class="list-group-item">
+          <strong>Адрес:</strong> {{ organization.address }}
+        </li>
+      {% endif %}
+
+      {% if organization.inn %}
+        <li class="list-group-item">
+          <strong>ИНН:</strong> {{ organization.inn }}
+        </li>
+      {% endif %}
+
+      {% if organization.leader %}
+        <li class="list-group-item">
+          <strong>Руководитель:</strong> {{ organization.leader }}
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+{% endblock %}
